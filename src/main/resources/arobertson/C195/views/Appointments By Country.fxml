@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="646.0" prefWidth="898.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="arobertson.C195.Controllers.AppointmentsByCountryController">
+   <children>
+      <Label layoutX="14.0" layoutY="14.0" text="Report">
+         <font>
+            <Font name="System Bold" size="33.0" />
+         </font>
+      </Label>
+      <Label layoutX="68.0" layoutY="63.0" prefHeight="30.0" prefWidth="238.0" text="Appointments By Country">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <TableView fx:id="appointmentsByCountryTable" layoutX="68.0" layoutY="93.0" prefHeight="340.0" prefWidth="780.0">
+        <columns>
+          <TableColumn fx:id="appointmentIdColumn" prefWidth="113.0" text="Appointment Id" />
+          <TableColumn fx:id="titleColumn" prefWidth="109.0" text="Title" />
+            <TableColumn fx:id="typeColumn" minWidth="6.0" prefWidth="76.0" text="Type" />
+            <TableColumn fx:id="descriptionColumn" prefWidth="168.0" text="Description" />
+            <TableColumn fx:id="startColumn" prefWidth="110.0" text="Start" />
+            <TableColumn fx:id="endColumn" prefWidth="105.0" text="End" />
+            <TableColumn fx:id="customerIdColumn" prefWidth="98.0" text="Customer Id" />
+        </columns>
+      </TableView>
+      <ComboBox fx:id="countrySelector" layoutX="437.0" layoutY="66.0" onAction="#loadAppointmentsByCountry" prefWidth="150.0" />
+      <Label layoutX="354.0" layoutY="70.0" text="Select Country" />
+      <Label layoutX="68.0" layoutY="441.0" prefHeight="30.0" prefWidth="286.0" text="Appointment Totals By Country">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <TableView fx:id="totalAppointmentsByCountryTable" layoutX="100.0" layoutY="471.0" prefHeight="143.0" prefWidth="222.0">
+        <columns>
+          <TableColumn fx:id="countryColumn" prefWidth="116.0" text="Country" />
+          <TableColumn fx:id="totalColumn" prefWidth="103.0" text="Total" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="621.0" prefWidth="439.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="arobertson.C195.Controllers.UpdateCustomerController">
+   <children>
+      <Label layoutX="42.0" layoutY="33.0" text="Update Customer">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <VBox layoutX="14.0" layoutY="128.0" prefHeight="299.0" prefWidth="162.0" style="-fx-background-color: none; -fx-spacing: 20px;">
+         <children>
+            <Label fx:id="idLabel" style="-fx-line-spacing: 5px;" styleClass="addCustomerLabels" text="ID">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="nameLabel" prefWidth="64.0" style="-fx-line-spacing: 5px;" styleClass="addCustomerLabels" text="Name">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="addressLabel" style="-fx-line-spacing: 5px;" styleClass="addCustomerLabels" text="Address">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="phoneNumberLabel" style="-fx-line-spacing: 5px;" styleClass="addCustomerLabels" text="Phone Number">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="countryLabel" style="-fx-line-spacing: 5px;" styleClass="addCustomerLabels" text="Country">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="stateLabel" style="-fx-line-spacing: 5px;" styleClass="addCustomerLabels" text="State/Province">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="postalCodeLabel" style="-fx-line-spacing: 5px;" styleClass="addCustomerLabels" text="Postal Code">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <VBox layoutX="213.0" layoutY="130.0" prefHeight="365.0" prefWidth="214.0" style="-fx-background-color: none; -fx-spacing: 18px;">
+         <children>
+            <TextField fx:id="idInput" disable="true" editable="false" minHeight="37.0" />
+            <TextField fx:id="nameInput" minHeight="37.0" />
+            <TextField fx:id="addressInput" minHeight="37.0" />
+            <TextField fx:id="phoneNumberInput" minHeight="37.0" />
+            <ComboBox fx:id="countryInput" minHeight="37.0" prefHeight="25.0" prefWidth="217.0" />
+            <ComboBox fx:id="stateInput" minHeight="37.0" prefHeight="25.0" prefWidth="217.0" />
+            <TextField fx:id="postalCodeInput" minHeight="37.0" />
+         </children>
+      </VBox>
+      <ButtonBar layoutX="104.0" layoutY="533.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="40.0" prefWidth="191.0">
+        <buttons>
+          <Button fx:id="saveBtn" mnemonicParsing="false" text="Save" onAction="#onSave">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="cancelBtn" mnemonicParsing="false" text="Cancel" onAction="#onCancel">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+        </buttons>
+      </ButtonBar>
+   </children>
+</AnchorPane>
