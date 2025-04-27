@@ -15,6 +15,9 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ResourceBundle;
 
+/**
+ * Controls the functionality of the "Add Appointment.fxml"
+ */
 public class AddAppointmentController implements Initializable {
     @FXML
     private Button cancelBtn;
@@ -94,8 +97,12 @@ public class AddAppointmentController implements Initializable {
     @FXML
     private Label userIdLabel;
 
+    /**
+     * Saves all the form fields in the "Add Appointment.fxml
+     * @throws SQLException If an error occurs with SQL query it throws the error.
+     */
     @FXML
-    void onSave() throws SQLException{
+    void onSave() {
         if(!Validation.validateAppointmentInputes(titleInput,descriptionInput,locationInput,contactInput, typeInput,startDateInput,startTimeInput,endDateInput,endtTimeInput,customerIdInput,userIdInput)){
             return;
         }
@@ -135,6 +142,9 @@ public class AddAppointmentController implements Initializable {
         }
     }
 
+    /**
+     * Alerts the use if they are sure if they want to cancel adding an appointment. If so closes the Stage.
+     */
     @FXML
     void onCancel(){
         if(Alerts.alertConfirm(1)){
@@ -143,6 +153,11 @@ public class AddAppointmentController implements Initializable {
         }
     }
 
+    /**
+     * Initializes and adds data to multiple input fields on the "Add Appointment.fxml"
+     * @param url - Not used
+     * @param lang - Not used
+     */
     @Override
     public void initialize(URL url, ResourceBundle lang){
         try {
@@ -150,6 +165,7 @@ public class AddAppointmentController implements Initializable {
             new InputLoader().loadTimes(startTimeInput,endtTimeInput);
             new InputLoader().loadCustomers(customerIdInput);
             new InputLoader().loadUsers(userIdInput);
+            new InputLoader().diableWeekends(startDateInput,endDateInput);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

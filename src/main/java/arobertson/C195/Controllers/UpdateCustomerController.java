@@ -17,6 +17,9 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+/**
+ * Controls the functionality of the "Update Customer.fxml" report.
+ */
 public class UpdateCustomerController implements Initializable {
 
     @FXML
@@ -69,7 +72,12 @@ public class UpdateCustomerController implements Initializable {
 
     private Customer selectedCustomer;
 
-    public void initialize(URL url, ResourceBundle rb) {
+    /**
+     * Initializes and loads the country ComboBox
+     * @param url Not Used
+     * @param lang Not Used
+     */
+    public void initialize(URL url, ResourceBundle lang) {
         try {
             new InputLoader().loadCountries(countryInput);
             
@@ -78,11 +86,18 @@ public class UpdateCustomerController implements Initializable {
         }
     }
 
+    /**
+     * Sets the customer that is selected and calls the populateFields function to load the data.
+     * @param customer - Selected appointment from the appointment table.
+     */
     public void setCustomer(Customer customer) {
         this.selectedCustomer = customer;
         populateFields();
     }
 
+    /**
+     * Populates all the input fields in the Update Customer view with data from the database.
+     */
     private void populateFields() {
         try {
             idInput.setText(String.valueOf(selectedCustomer.getCustomerId()));
@@ -106,6 +121,9 @@ public class UpdateCustomerController implements Initializable {
         }
     }
 
+    /**
+     * When the save button is click is grabs all the fields from the form and validates and saves the data to the database.
+     */
     @FXML
     void onSave(){
        try {
@@ -130,6 +148,9 @@ public class UpdateCustomerController implements Initializable {
        }
     }
 
+    /**
+     * Alerts the use if they are sure if they want to cancel adding an appointment. If so closes the Stage.
+     */
     @FXML
     void onCancel(){
         if(Alerts.alertConfirm(1)){

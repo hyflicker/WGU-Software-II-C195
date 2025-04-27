@@ -2,14 +2,9 @@ package arobertson.C195.Controllers;
 
 import Utilities.InputLoader;
 import arobertson.C195.DAO.AppointmentDAO;
-import arobertson.C195.DAO.ContactDAO;
-import arobertson.C195.DAO.CustomerDAO;
 import arobertson.C195.Models.Appointment;
-import arobertson.C195.Models.Contact;
 import arobertson.C195.Models.Customer;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
@@ -21,6 +16,9 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+/**
+ * Controls the functionality of the "Contact Schedule.fxml" report.
+ */
 public class ContactScheduleController implements Initializable {
 
     @FXML
@@ -51,8 +49,12 @@ public class ContactScheduleController implements Initializable {
     private TableColumn<?, ?> typeColumn;
 
 
-
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    /**
+     * Initializes and set the cell values of the table. Calls the loadContact function to load the data into the table.
+     * @param url Not Used
+     * @param lang Not Used
+     */
+    public void initialize(URL url, ResourceBundle lang) {
         appointmentIdColumn.setCellValueFactory(new PropertyValueFactory<>("appointmentId"));
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
         typeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
@@ -67,6 +69,10 @@ public class ContactScheduleController implements Initializable {
         }
     }
 
+    /**
+     * Loads the data into the contactSelector ComboBox
+     * @throws SQLException If an error occurs with SQL query it throws the error.
+     */
     private void loadContacts() throws SQLException {
         new InputLoader().loadContacts(contactSelector);
         if (!contactSelector.getItems().isEmpty()) {
@@ -75,17 +81,16 @@ public class ContactScheduleController implements Initializable {
         }
     }
 
+    /**
+     * Loads the data into the contactScheduleTable based on the value of the contactSelector.
+     * @throws SQLException If an error occurs with SQL query it throws the error.
+     */
     @FXML
-    void loadContactAppointments() {
+    void loadContactAppointments() throws SQLException{
         int contactId = Integer.parseInt(contactSelector.getValue().split(" - ")[0].trim());
         if (contactSelector != null) {
-            try {
-                ObservableList<Appointment> schedule = AppointmentDAO.getAppointmentsByContactId(contactId);
-                contactScheduleTable.setItems(schedule);
-            } catch (SQLException e) {
-                System.out.print(e);
-                //NEED TO ENTER ERROR MESSAGE
-            }
+            ObservableList<Appointment> schedule = AppointmentDAO.getAppointmentsByContactId(contactId);
+            contactScheduleTable.setItems(schedule);
         }
     }
 

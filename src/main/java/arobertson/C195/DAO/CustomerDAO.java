@@ -11,7 +11,15 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
+/**
+ * Customer Database Access Object. Functions in this class make up different ways of returning user data.
+ */
 public class CustomerDAO {
+    /**
+     * Returns a list of all customer.
+     * @return ObservableList Customer
+     * @throws SQLException If an error occurs with SQL query it throws the error.
+     */
     public static ObservableList<Customer> getCustomerList() throws SQLException {
         ObservableList<Customer> list = FXCollections.observableArrayList();
 
@@ -33,6 +41,11 @@ public class CustomerDAO {
         return list;
     }
 
+    /**
+     * Inserts customer information into the database.
+     * @param newCustomer Customer object.
+     * @throws SQLException If an error occurs with SQL query it throws the error.
+     */
     public static void insertCustomer(Customer newCustomer) throws SQLException {
         String query = "INSERT INTO customers (Customer_Id, Customer_Name, Address, Postal_Code, Phone, Create_Date, " + "Created_By, Last_Update, Last_Updated_By, Division_Id) " + "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
@@ -52,6 +65,11 @@ public class CustomerDAO {
         ps.executeUpdate();
     }
 
+    /**
+     * Updates a customer in the database.
+     * @param customer Customer object
+     * @throws SQLException If an error occurs with SQL query it throws the error.
+     */
     public static void updateCustomer(Customer customer) throws SQLException {
         String query = "UPDATE customers SET Customer_Name = ?, Address = ?, Postal_Code = ?, " + "Phone = ?, Last_Update = ?, Last_Updated_By = ?, Division_ID = ? " + "WHERE Customer_ID = ?";
 
@@ -69,13 +87,24 @@ public class CustomerDAO {
         ps.executeUpdate();
     }
 
-    public static void deleteCustomer(int customerID) throws SQLException {
+    /**
+     * Deletes a customer from the database by the customerId provided.
+     * @param customerId The ID of the customer that needs to be deleted.
+     * @throws SQLException If an error occurs with SQL query it throws the error.
+     */
+    public static void deleteCustomer(int customerId) throws SQLException {
         String query = "DELETE FROM customers WHERE Customer_ID = ?";
         PreparedStatement ps = Database.connection.prepareStatement(query);
-        ps.setInt(1, customerID);
+        ps.setInt(1, customerId);
         ps.executeUpdate();
     }
 
+    /**
+     * Returns true or false if appointment list is empty for a customer or not.
+     * @param customerId customer id for the search for appointments.
+     * @return True or False
+     * @throws SQLException If an error occurs with SQL query it throws the error.
+     */
     public static boolean appointmentListIsEmpty(int customerId) throws SQLException {
         String query = "SELECT COUNT(*) as count FROM appointments WHERE Customer_ID = ?";
         PreparedStatement ps = Database.connection.prepareStatement(query);
@@ -86,22 +115,5 @@ public class CustomerDAO {
             return results.getInt("count") == 0;
         }
         return true;
-    }
-
-    public static ObservableList<Customer> getCustomerAppTotals () throws SQLException{
-        ObservableList<Customer> customers = FXCollections.observableArrayList();
-        String query = "SELECT c.Customer_ID, c.Customer_Name, COUNT(a.Appointment_ID) AS count FROM customers AS c LEFT JOIN client_schedule.appointments AS a ON c.Customer_ID = a.Customer_ID GROUP BY c.Customer_ID, c.Customer_Name ORDER BY count DESC";
-        try (PreparedStatement ps = Database.connection.prepareStatement(query)) {
-            ResultSet results = ps.executeQuery();
-
-            while (results.next()) {
-                customers.add(new Customer(
-                        results.getInt("Customer_ID"),
-                        results.getString("Customer_Name"),
-                        results.getInt("count")
-                ));
-            }
-        }
-        return customers;
     }
 }

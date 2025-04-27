@@ -17,6 +17,9 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+/**
+ * Controls the functionality of the "AppointmentByCountry.fxml" report.
+ */
 public class AppointmentsByCountryController implements Initializable {
 
     @FXML
@@ -55,6 +58,10 @@ public class AppointmentsByCountryController implements Initializable {
     @FXML
     private TableColumn<?, ?> typeColumn;
 
+    /**
+     * Loads the totalAppointmentsByCountry table with data depending on the selection of the country.
+     * @throws SQLException If an error occurs with SQL query it throws the error.
+     */
     @FXML
     void loadAppointmentsInCountry() throws SQLException {
         countryColumn.setCellValueFactory(new PropertyValueFactory<>("country"));
@@ -62,6 +69,10 @@ public class AppointmentsByCountryController implements Initializable {
         totalAppointmentsByCountryTable.setItems(LocationDAO.getTotalAppointmentsByCountry());
     }
 
+    /**
+     * Loads the countries into the countrySelector ComboBox.
+     * @throws SQLException If an error occurs with SQL query it throws the error.
+     */
     @FXML
     void loadCountrySelector() throws SQLException{
         new InputLoader().loadCountries(countrySelector);
@@ -71,23 +82,27 @@ public class AppointmentsByCountryController implements Initializable {
         }
     }
 
+    /**
+     * When the countrySelector is changed, it loads the new data into the appointmentsByCountryTable.
+     * @throws SQLException If an error occurs with SQL query it throws the error.
+     */
     @FXML
     void loadAppointmentsByCountry() throws SQLException{
         int countryId = LocationDAO.getCountryIdByName(countrySelector.getValue());
         if (countrySelector != null) {
-            try {
-                ObservableList<Appointment> apps = AppointmentDAO.getAppointmentsByCountryId(countryId);
-                appointmentsByCountryTable.setItems(apps);
-            } catch (SQLException e) {
-                System.out.print(e);
-                //NEED TO ENTER ERROR MESSAGE
-            }
+            ObservableList<Appointment> apps = AppointmentDAO.getAppointmentsByCountryId(countryId);
+            appointmentsByCountryTable.setItems(apps);
         }
 
     }
 
+    /**
+     * Initializes and sets the cell values of the table and then calls functions to load data into table and selector.
+     * @param url - Not Used
+     * @param lang - Not Used
+     */
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    public void initialize(URL url, ResourceBundle lang) {
         try {
             appointmentIdColumn.setCellValueFactory(new PropertyValueFactory<>("appointmentId"));
             titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));

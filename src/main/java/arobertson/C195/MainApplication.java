@@ -10,11 +10,14 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import java.util.Locale;
 import java.util.ResourceBundle;
 
-
+/**
+ * Main Class - Starts the application and loads the login view.
+ */
 public class MainApplication extends Application {
-    ResourceBundle lang = ResourceBundle.getBundle("language");
+    ResourceBundle lang = ResourceBundle.getBundle("language", Locale.getDefault());
     @Override
     public void start(Stage stage) throws IOException, SQLException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("views/Login.fxml"));

@@ -8,11 +8,17 @@ import javafx.collections.ObservableList;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
 
-
+/**
+ * User Database object. The functions in this class are specifically for User Object.
+ */
 public class UserDAO {
+    /**
+     * Returns true or false if the credentials provided match the database to log the user in.
+     * @param username Username from login form
+     * @param password Password from login form
+     * @return True or False
+     */
     public static boolean userLogin(String username, String password){
         try{
             PreparedStatement checkLogin = Database.connection.prepareStatement("SELECT * FROM users WHERE User_Name = ? AND Password = ?");
@@ -28,6 +34,11 @@ public class UserDAO {
         return false;
     }
 
+    /**
+     * Returns a list of all users.
+     * @return ObservableList User
+     * @throws SQLException If an error occurs with SQL query it throws the error.
+     */
     public static ObservableList<User> getAllUsers() throws SQLException {
         ObservableList<User> users = FXCollections.observableArrayList();
         String sql = "SELECT User_ID, User_Name FROM users";
@@ -46,21 +57,12 @@ public class UserDAO {
         return users;
     }
 
-    public static User getUserByUsername(String username) throws SQLException {
-        PreparedStatement sqlQuery = Database.connection.prepareStatement("SELECT * FROM users WHERE User_Name = '" + username+ "'");
-        ResultSet results = sqlQuery.executeQuery();
-        results.next();
-
-        int userId = results.getInt("User_Id");
-        String password = results.getString("Password");
-        LocalDateTime createdDate = results.getTimestamp("Create_Date").toLocalDateTime();
-        String createdBy = results.getString("Created_By");
-        Timestamp lastUpdated = results.getTimestamp("Last_Update");
-        String lastUpdatedBy = results.getString("Last_Updated_By");
-
-        return new User(userId,username,password,createdDate,createdBy,lastUpdated,lastUpdatedBy);
-    }
-
+    /**
+     * Returns a new user object from the database using the user id.
+     * @param id ID of the user
+     * @return User Object
+     * @throws SQLException If an error occurs with SQL query it throws the error.
+     */
     public static User getUserById(int id) throws SQLException {
         PreparedStatement sqlQuery = Database.connection.prepareStatement("SELECT * FROM users WHERE User_ID = '" + id + "'");
         ResultSet results = sqlQuery.executeQuery();

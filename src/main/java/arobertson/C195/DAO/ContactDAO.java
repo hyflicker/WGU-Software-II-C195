@@ -9,8 +9,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * Contact Database Access Object. Functions in this class make up different ways of returning contact data.
+ */
 public class ContactDAO {
-
+    /**
+     * Returns a list of all contacts structured by the Contact class.
+     * @return ObservableList Contact
+     */
     public static ObservableList<Contact> getAllContacts() throws SQLException {
         ObservableList<Contact> contacts = FXCollections.observableArrayList();
         String query = "SELECT Contact_ID, Contact_Name, Email FROM contacts";
@@ -29,6 +35,13 @@ public class ContactDAO {
         }
         return contacts;
     }
+
+    /**
+     * Returns the contact with the provided contact ID.
+     * @param contactId Id of the contact
+     * @return Returns the contact.
+     * @throws SQLException If an error occurs with SQL query it throws the error.
+     */
     public static Contact getContact(int contactId) throws SQLException {
         String query = "SELECT Contact_ID, Contact_Name, Email FROM contacts WHERE Contact_ID = ?";
 

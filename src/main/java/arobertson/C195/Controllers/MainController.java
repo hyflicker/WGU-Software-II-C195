@@ -9,7 +9,6 @@ import arobertson.C195.Models.*;
 import javafx.application.Application;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -25,6 +24,9 @@ import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 
+/**
+ * Controls the functionality of the "Main.fxml" report.
+ */
 public class MainController implements Initializable {
 
     @FXML
@@ -102,6 +104,9 @@ public class MainController implements Initializable {
     @FXML
     private RadioButton weekRadioBtn;
 
+    /**
+     * Loads the "Add Appointment.fxml" when the Add button is pressed.
+     */
     @FXML
     void addAppointment() {
         try{
@@ -115,7 +120,7 @@ public class MainController implements Initializable {
                 e.consume();
                 if(Alerts.alertConfirm(1)){
                     stage.close();
-                };
+                }
             });
             stage.showAndWait();
             refreshAppointmentTable();
@@ -124,8 +129,11 @@ public class MainController implements Initializable {
         }
     }
 
+    /**
+     * Loads the "Add Customer.fxml" when the Add button is pressed.
+     */
     @FXML
-    void addCustomer(ActionEvent event) {
+    void addCustomer() {
         try{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/arobertson/c195/views/Add Customer.fxml"));
             Parent root = loader.load();
@@ -137,7 +145,7 @@ public class MainController implements Initializable {
                 e.consume();
                 if(Alerts.alertConfirm(1)){
                     stage.close();
-                };
+                }
             });
             stage.showAndWait();
             refreshCustomerTable();
@@ -146,6 +154,9 @@ public class MainController implements Initializable {
         }
     }
 
+    /**
+     * Deletes the appointment selected in the appointmentsTable. If no appointment is selected, it alerts the user.
+     */
     @FXML
     void deleteAppointment() {
         Appointment selected = appointmentTable.getSelectionModel().getSelectedItem();
@@ -167,6 +178,9 @@ public class MainController implements Initializable {
         }
     }
 
+    /**
+     * Deletes the customer selected in the customerTable. If a customer is not selected it alerts the user.
+     */
     @FXML
     void deleteCustomer() {
         Customer selected = customerTable.getSelectionModel().getSelectedItem();
@@ -193,11 +207,19 @@ public class MainController implements Initializable {
         }
     }
 
+    /**
+     * Alerts the user to confirm if they want to logout. If yes, it closes the Main stage and loads the login stage.
+     * @throws IOException If an error occurs it throws the error.
+     * @throws SQLException If an error occurs with SQL query it throws the error.
+     */
     @FXML
     void logout() throws IOException, SQLException {
         Alerts.alertLogout((Stage) logoutBtn.getScene().getWindow());
     }
 
+    /**
+     * When the Contract Schedule is selected in reports, it loads the Contact Schedule Report.
+     */
     @FXML
     void onContactSchedule(){
         try {
@@ -212,13 +234,17 @@ public class MainController implements Initializable {
                 e.consume();
                 if(Alerts.alertConfirm(1)){
                     stage.close();
-                };
+                }
             });
             stage.showAndWait();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
+
+    /**
+     * When the Customer Appointment Totals is selected in reports, it loads the Customer Appointment Totals report.
+     */
     @FXML
     void onCustomerAppointmentTotals(){
         try {
@@ -233,13 +259,17 @@ public class MainController implements Initializable {
                 e.consume();
                 if(Alerts.alertConfirm(1)){
                     stage.close();
-                };
+                }
             });
             stage.showAndWait();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
+
+    /**
+     * When the Total Appointments By Country is selected in reports, it loads the Appointments By Country report.
+     */
     @FXML
     void onTotalAppointmentsByCountry(){
         try {
@@ -254,7 +284,7 @@ public class MainController implements Initializable {
                 e.consume();
                 if(Alerts.alertConfirm(1)){
                     stage.close();
-                };
+                }
             });
             stage.showAndWait();
         } catch (IOException e) {
@@ -262,6 +292,9 @@ public class MainController implements Initializable {
         }
     }
 
+    /**
+     * When an appointment in the appointment table is selected it opens the Update Appointment and loads the data into the Update Appointment view. If not appointment is selected, it alerts the user.
+     */
     @FXML
     void updateAppointment() {
         Appointment selected = appointmentTable.getSelectionModel().getSelectedItem();
@@ -284,7 +317,7 @@ public class MainController implements Initializable {
                 e.consume();
                 if(Alerts.alertConfirm(1)){
                     stage.close();
-                };
+                }
             });
             stage.showAndWait();
             refreshAppointmentTable();
@@ -293,6 +326,9 @@ public class MainController implements Initializable {
         }
     }
 
+    /**
+     * When a customer in the customer table is selected it opens the Update Customer and loads the data into the Update Customer view. If no customer is selected, it alerts the user.
+     */
     @FXML
     void updateCustomer() {
         Customer selected = customerTable.getSelectionModel().getSelectedItem();
@@ -315,7 +351,7 @@ public class MainController implements Initializable {
                 e.consume();
                 if(Alerts.alertConfirm(1)){
                     stage.close();
-                };
+                }
             });
             stage.showAndWait();
             refreshCustomerTable();
@@ -324,6 +360,9 @@ public class MainController implements Initializable {
         }
     }
 
+    /**
+     * When the radio button for current month is selected it loads all the appointments for this month.
+     */
     @FXML
     void currentMonthApps(){
         try{
@@ -333,6 +372,9 @@ public class MainController implements Initializable {
         }
     }
 
+    /**
+     * When the radio button for current week is selected it loads all the appointments for this week.
+     */
     @FXML
     void currentWeekApps(){
         try{
@@ -341,7 +383,9 @@ public class MainController implements Initializable {
             Alerts.alertError(4);
         }
     }
-
+    /**
+     * When the radio button for all appointments is selected it loads all the appointments regardless of when.
+     */
     @FXML
     void allAppointments(){
         try{
@@ -351,8 +395,14 @@ public class MainController implements Initializable {
         }
     }
 
+    /**
+     * Initialize and sets all the cells for both tables and calls refresh functions to load the data in the tables.
+     * @param url - Not Used
+     * @param lang - Not Used
+     */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle lang) {
+        //Initialize appointment table columns
         appIdColumn.setCellValueFactory(new PropertyValueFactory<>("appointmentId"));
         appTitleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
         appDescriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
@@ -391,28 +441,25 @@ public class MainController implements Initializable {
         });
         customerPostalCodeColumn.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
 
-        // Load initial data
+        // Load initial data to tables
         refreshAppointmentTable();
         refreshCustomerTable();
     }
 
-    private void refreshAppointmentTable() {
-        try {
-            ObservableList<Appointment> appointments = AppointmentDAO.getAllAppointments();
-            appointmentTable.setItems(appointments);
-            System.out.print("App Table Refresh");
-        } catch (SQLException e) {
-            System.out.print(e);
-        }
+    /**
+     * Loads and/or refreshes the data into the appointment table.
+     */
+    private void refreshAppointmentTable() throws SQLException{
+        ObservableList<Appointment> appointments = AppointmentDAO.getAllAppointments();
+        appointmentTable.setItems(appointments);
+        System.out.print("App Table Refresh");
     }
 
-    private void refreshCustomerTable() {
-        try {
-            ObservableList<Customer> customers = CustomerDAO.getCustomerList();
-            customerTable.setItems(customers);
-        } catch (SQLException e) {
-            System.out.print(e);
-//            showAlert("Error", "Could not refresh customer data", Alert.AlertType.ERROR);
-        }
+    /**
+     * Loads and/or refreshes the data into the customer table.
+     */
+    private void refreshCustomerTable() throws SQLException {
+        ObservableList<Customer> customers = CustomerDAO.getCustomerList();
+        customerTable.setItems(customers);
     }
 }

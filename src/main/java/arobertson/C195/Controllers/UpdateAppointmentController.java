@@ -23,6 +23,9 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ResourceBundle;
 
+/**
+ * Controls the functionality of the "Update Appointment.fxml" report.
+ */
 public class UpdateAppointmentController implements Initializable {
 
     @FXML
@@ -103,6 +106,9 @@ public class UpdateAppointmentController implements Initializable {
     @FXML
     private Label userIdLabel;
 
+    /**
+     * Initializes and loads ComboBoxes
+     */
     private Appointment selectedAppointment;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -111,16 +117,24 @@ public class UpdateAppointmentController implements Initializable {
             new InputLoader().loadTimes(startTimeInput,endtTimeInput);
             new InputLoader().loadCustomers(customerIdInput);
             new InputLoader().loadUsers(userIdInput);
+            new InputLoader().diableWeekends(startDateInput,endDateInput);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
+    /**
+     * Sets the appointment that is selected and calls the populateFields function to load the data.
+     * @param appointment - Selected appointment from the appointment table.
+     */
     public void setAppointment(Appointment appointment) {
         this.selectedAppointment = appointment;
         populateFields();
     }
 
+    /**
+     * Populates all the input fields in the Update Appointment view with data from the database.
+     */
     private void populateFields() {
         try {
             idInput.setText(String.valueOf(selectedAppointment.getAppointmentId()));
@@ -139,9 +153,7 @@ public class UpdateAppointmentController implements Initializable {
             customerIdInput.setValue(customer.getCustomerId() + " - " + customer.getCustomerName());
 
             User user = UserDAO.getUserById(selectedAppointment.getUserId());
-            if (user != null) {
-                userIdInput.setValue(user.getUserId() + " - " + user.getUsername());
-            }
+            userIdInput.setValue(user.getUserId() + " - " + user.getUsername());
 
             startDateInput.setValue(selectedAppointment.getStart().toLocalDate());
             endDateInput.setValue(selectedAppointment.getEnd().toLocalDate());
@@ -153,8 +165,11 @@ public class UpdateAppointmentController implements Initializable {
         }
     }
 
+    /**
+     * When the save button is click is grabs all the fields from the form and validates and saves the data to the database.
+     */
     @FXML
-    void onSave() throws SQLException{
+    void onSave(){
         if(!Validation.validateAppointmentInputes(titleInput,descriptionInput,locationInput,contactInput, typeInput,startDateInput,startTimeInput,endDateInput,endtTimeInput,customerIdInput,userIdInput)){
             return;
         }
@@ -189,6 +204,9 @@ public class UpdateAppointmentController implements Initializable {
         }
     }
 
+    /**
+     * Alerts the use if they are sure if they want to cancel adding an appointment. If so closes the Stage.
+     */
     @FXML
     void onCancel(){
         if(Alerts.alertConfirm(1)){

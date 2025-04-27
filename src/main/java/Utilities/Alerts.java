@@ -1,17 +1,36 @@
 package Utilities;
 
+import arobertson.C195.DAO.AppointmentDAO;
 import arobertson.C195.MainApplication;
+import arobertson.C195.Models.Appointment;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
-
+/**
+ * Utility class for displaying various types of alerts to the user.
+ */
 public class Alerts {
-    static ResourceBundle lang = ResourceBundle.getBundle("language");
+    /**
+     * Resource bundle for managing localized language strings.
+     */
+    static ResourceBundle lang = ResourceBundle.getBundle("language", Locale.getDefault());
+
+    /**
+     * Displays a confirmation alert with customizable messages based on the provided ID.
+     *
+     * @param confirmationId An integer identifying the type of confirmation needed.
+     * 1: Cancel confirmation.
+     * 2: Deletion confirmation.
+     * @return {@code true} if the user clicks the OK button, {@code false} otherwise.
+     */
     public static boolean alertConfirm(int confirmationId) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         switch (confirmationId) {
@@ -27,6 +46,15 @@ public class Alerts {
         return false;
     }
 
+    /**
+     * Displays a warning alert with customizable messages based on the provided ID.
+     *
+     * @param warningId An integer identifying the type of warning to display.
+     * 1: Selection warning for updating an appointment.
+     * 2: Selection warning for updating a customer.
+     * 3: Selection warning for deleting an appointment.
+     * 4: Selection warning for deleting a customer.
+     */
     public static void alertWarning(int warningId){
         Alert alert = new Alert(Alert.AlertType.WARNING);
         switch (warningId){
@@ -50,10 +78,20 @@ public class Alerts {
                 alert.setContentText("Please select a customer to delete.");
                 alert.showAndWait();
                 break;
-
-
         }
     }
+
+    /**
+     * Displays an information alert with customizable messages based on the provided ID.
+     *
+     * @param infoId An integer identifying the type of information to display.
+     * 1: Success message for adding an appointment.
+     * 2: Success message for updating an appointment.
+     * 3: Success message for deleting an appointment.
+     * 4: Success message for adding a customer.
+     * 5: Success message for updating a customer.
+     * 6: Success message for deleting a customer.
+     */
     public static void alertInfo(int infoId){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
 
@@ -89,8 +127,28 @@ public class Alerts {
                 alert.showAndWait();
                 break;
         }
-
     }
+
+    /**
+     * Displays an error alert with customizable messages based on the provided ID.
+     * The error messages for credential issues are localized based on the current locale.
+     *
+     * @param errorId An integer identifying the type of error to display.
+     * 1: Error for a blank username.
+     * 2: Error for a blank password.
+     * 3: Error for invalid credentials.
+     * 4: Error indicating failure to update tables.
+     * 5: Error indicating failure to add data to a table.
+     * 6: Error indicating failure to update data in a table.
+     * 7: Error indicating failure to delete data in a table.
+     * 8: Error indicating a conflicting customer appointment schedule.
+     * 9: Error indicating failure to add an appointment.
+     * 10: Error indicating failure to load appointment data.
+     * 11: Error indicating failure to load customer data.
+     * 12: Generic error indicating failure to delete a record.
+     * 13: Error indicating that customers with existing appointments cannot be deleted.
+     * 14: Error indicating failure to add a customer.
+     */
     public static void alertError(int errorId){
         Alert alert = new Alert(Alert.AlertType.ERROR);
         switch (errorId){
@@ -167,13 +225,25 @@ public class Alerts {
         }
     }
 
-    public static void alertErrorInputes(String addionalMessage){
+    /**
+     * Displays an error alert specifically for input validation failures, including an additional message.
+     *
+     * @param additionalMessage A String containing additional information about the input error.
+     */
+    public static void alertErrorInputs(String additionalMessage){
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Input Error");
-        alert.setContentText("An error occurred as you are missing required fields.\n"+addionalMessage);
+        alert.setContentText("An error occurred as you are missing required fields.\n"+additionalMessage);
         alert.showAndWait();
     }
 
+    /**
+     * Displays a warning alert to confirm application exit.
+     * If the user confirms, the database connection is closed and the stage is closed.
+     * The alert message is localized.
+     *
+     * @param stage The primary stage of the application.
+     */
     public static void alertExit(Stage stage){
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle(lang.getString("exitConfirmation"));
@@ -189,6 +259,15 @@ public class Alerts {
         }
     }
 
+    /**
+     * Displays a warning alert to confirm user logout.
+     * If the user confirms, the current stage is closed, the database connection is closed,
+     * and a new instance of the main application is started on the same stage.
+     *
+     * @param stage The current stage of the application.
+     * @throws SQLException If an error occurs while closing the database connection.
+     * @throws IOException  If an error occurs while starting the new main application.
+     */
     public static void alertLogout(Stage stage) throws SQLException, IOException {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Logout Confirmation");
@@ -202,6 +281,38 @@ public class Alerts {
             new MainApplication().start(stage);
         } else if (alert.getResult() == ButtonType.CANCEL) {
             alert.close();
+        }
+    }
+
+    /**
+     * Checks for any appointments starting within the next 15 minutes and displays an informational alert.
+     * If an upcoming appointment is found, the alert will display the appointment ID and start time
+     * in the format "MM-dd-yyy HH:mm". If no upcoming appointments are found, a corresponding message is displayed.
+     * The alert messages are localized.
+     */
+    public static void alertUpcomingApps (){
+        try {
+            LocalDateTime now = LocalDateTime.now();
+            LocalDateTime soon = now.plusMinutes(15);
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Upcoming Appointments");
+            boolean found = false;
+            for (Appointment app : AppointmentDAO.getAllAppointments()) {
+                LocalDateTime start = app.getStart();
+                if (start.isAfter(now) && start.isBefore(soon)) {
+                    alert.setContentText(String.format(lang.getString("upcomingApp"),app.getAppointmentId(),start.format(DateTimeFormatter.ofPattern("MM-dd-yyy HH:mm"))));
+                    found = true;
+                    break;
+                }
+            }
+
+            if (!found) {
+                alert.setContentText(lang.getString("noUpcomingApp"));
+            }
+            alert.showAndWait();
+        } catch (SQLException e) {
+            Alerts.alertError(10);
         }
     }
 }
