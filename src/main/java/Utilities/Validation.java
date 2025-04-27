@@ -165,7 +165,7 @@ public class Validation {
             errorMessage.append(lang.getString("inputError3")).append("\n");
         }
         if (phoneNumberInput.getText().isEmpty()) {
-            errorMessage.append("inputError4").append("\n");
+            errorMessage.append(lang.getString("inputError4")).append("\n");
         }
         if (countryInput.getValue() == null) {
             errorMessage.append(lang.getString("inputError5")).append("\n");
