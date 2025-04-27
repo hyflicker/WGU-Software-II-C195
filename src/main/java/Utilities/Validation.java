@@ -9,13 +9,14 @@ import javafx.scene.control.TextField;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 /**
  * Utility class for performing various input validation checks.
  */
 public class Validation {
+    static ResourceBundle lang = ResourceBundle.getBundle("language", Locale.getDefault());
     /**
      * Validates the inputs for adding or updating an appointment.
      * Checks if all required fields (title, description, location, contact, type,
@@ -39,37 +40,37 @@ public class Validation {
     public static boolean validateAppointmentInputes(TextField title, TextField description, TextField location, ComboBox<String> contact, TextField type, DatePicker startDate, ComboBox<LocalTime> startTime, DatePicker endDate, ComboBox<LocalTime> endTime, ComboBox<String> customer, ComboBox<String> user){
         StringBuilder errorMessage = new StringBuilder();
         if (title.getText().isEmpty()) {
-            errorMessage.append("Please enter a title.\n");
+            errorMessage.append("inputError7").append("\n");
         }
         if (description.getText().isEmpty()) {
-            errorMessage.append("Please enter a description.\n");
+            errorMessage.append(lang.getString("inputError8")).append("\n");
         }
         if (location.getText().isEmpty()) {
-            errorMessage.append("Please enter a location.\n");
+            errorMessage.append(lang.getString("inputError9")).append("\n");
         }
         if (contact.getValue() == null) {
-            errorMessage.append("Please select a contact.\n");
+            errorMessage.append(lang.getString("inputError10")).append("\n");
         }
         if (type.getText().isEmpty()) {
-            errorMessage.append("Please enter a type.\n");
+            errorMessage.append(lang.getString("inputError11")).append("\n");
         }
         if (startDate.getValue() == null) {
-            errorMessage.append("Please select a start date.\n");
+            errorMessage.append(lang.getString("inputError12")).append("\n");
         }
         if (startTime.getValue() == null) {
-            errorMessage.append("Please select a start time.\n");
+            errorMessage.append(lang.getString("inputError13")).append("\n");
         }
         if (endDate.getValue() == null) {
-            errorMessage.append("Please select an end date.\n");
+            errorMessage.append(lang.getString("inputError14")).append("\n");
         }
         if (endTime.getValue() == null) {
-            errorMessage.append("Please select an end time.\n");
+            errorMessage.append(lang.getString("inputError15")).append("\n");
         }
         if (customer.getValue() == null) {
-            errorMessage.append("Please select a customer.\n");
+            errorMessage.append(lang.getString("inputError16")).append("\n");
         }
         if (user.getValue() == null) {
-            errorMessage.append("Please select a user.\n");
+            errorMessage.append(lang.getString("inputError17")).append("\n");
         }
 
         if (!errorMessage.isEmpty()) {
@@ -155,22 +156,22 @@ public class Validation {
         StringBuilder errorMessage = new StringBuilder();
 
         if (nameInput.getText().isEmpty()) {
-            errorMessage.append("Please enter customer's name.\n");
+            errorMessage.append(lang.getString("inputError1")).append("\n");
         }
         if (addressInput.getText().isEmpty()) {
-            errorMessage.append("Please enter customer's address.\n");
+            errorMessage.append(lang.getString("inputError2")).append("\n");
         }
         if (postalCodeInput.getText().isEmpty()) {
-            errorMessage.append("Please enter customer's postal code.\n");
+            errorMessage.append(lang.getString("inputError3")).append("\n");
         }
         if (phoneNumberInput.getText().isEmpty()) {
-            errorMessage.append("Please enter customer's phone number.\n");
+            errorMessage.append("inputError4").append("\n");
         }
         if (countryInput.getValue() == null) {
-            errorMessage.append("Please enter customer's country.\n");
+            errorMessage.append(lang.getString("inputError5")).append("\n");
         }
         if (stateInput.getValue() == null) {
-            errorMessage.append("Please enter customer's state or division.\n");
+            errorMessage.append(lang.getString("inputError6")).append("\n");
         }
 
         if (!errorMessage.isEmpty()) {

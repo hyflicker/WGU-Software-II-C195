@@ -35,12 +35,12 @@ public class Alerts {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         switch (confirmationId) {
             case 1:
-                alert.setTitle("Cancel Confirmation");
-                alert.setContentText("Are you sure you want to cancel?");
+                alert.setTitle(lang.getString("cancelConfirmation"));
+                alert.setContentText(lang.getString("confirmCancel"));
                 return alert.showAndWait().get() == ButtonType.OK;
             case 2:
-                alert.setTitle("Deletion Confirmation");
-                alert.setContentText("Are you sure you want to delete this record?");
+                alert.setTitle(lang.getString("deleteConfirmation"));
+                alert.setContentText(lang.getString("confirmDelete"));
                 return alert.showAndWait().get() == ButtonType.OK;
         }
         return false;
@@ -59,23 +59,23 @@ public class Alerts {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         switch (warningId){
             case 1:
-                alert.setTitle("Selection Warning");
-                alert.setContentText("Please select an appointment to update.");
+                alert.setTitle(lang.getString("selectionWarning"));
+                alert.setContentText(lang.getString("selectAppointmentUpdate"));
                 alert.showAndWait();
                 break;
             case 2:
-                alert.setTitle("Selection Warning");
-                alert.setContentText("Please select a customer to update.");
+                alert.setTitle(lang.getString("selectionWarning"));
+                alert.setContentText(lang.getString("selectCustomerUpdate"));
                 alert.showAndWait();
                 break;
             case 3:
-                alert.setTitle("Selection Warning");
-                alert.setContentText("Please select an appointment to delete.");
+                alert.setTitle(lang.getString("selectionWarning"));
+                alert.setContentText(lang.getString("selectAppointmentDelete"));
                 alert.showAndWait();
                 break;
             case 4:
-                alert.setTitle("Selection Warning");
-                alert.setContentText("Please select a customer to delete.");
+                alert.setTitle(lang.getString("selectionWarning"));
+                alert.setContentText(lang.getString("selectCustomerDelete"));
                 alert.showAndWait();
                 break;
         }
@@ -97,33 +97,33 @@ public class Alerts {
 
         switch (infoId){
             case 1:
-                alert.setTitle("Success");
-                alert.setContentText("Appointment has been added and saved successfully.");
+                alert.setTitle(lang.getString("success"));
+                alert.setContentText(lang.getString("appointmentAddSuccess"));
                 alert.showAndWait();
                 break;
             case 2:
-                alert.setTitle("Success");
-                alert.setContentText("Appointment has been updated and saved successfully.");
+                alert.setTitle(lang.getString("success"));
+                alert.setContentText(lang.getString("appointmentUpdateSuccess"));
                 alert.showAndWait();
                 break;
             case 3:
-                alert.setTitle("Success");
-                alert.setContentText("Appointment has been deleted successfully.");
+                alert.setTitle(lang.getString("success"));
+                alert.setContentText(lang.getString("appointmentDeleteSuccess"));
                 alert.showAndWait();
                 break;
             case 4:
-                alert.setTitle("Success");
-                alert.setContentText("Customer has been added and saved successfully.");
+                alert.setTitle(lang.getString("success"));
+                alert.setContentText(lang.getString("customerAddSuccess"));
                 alert.showAndWait();
                 break;
             case 5:
-                alert.setTitle("Success");
-                alert.setContentText("Customer has been updated and saved successfully.");
+                alert.setTitle(lang.getString("success"));
+                alert.setContentText(lang.getString("customerUpdateSuccess"));
                 alert.showAndWait();
                 break;
             case 6:
-                alert.setTitle("Success");
-                alert.setContentText("Customer has been deleted successfully.");
+                alert.setTitle(lang.getString("success"));
+                alert.setContentText(lang.getString("customerDeleteSuccess"));
                 alert.showAndWait();
                 break;
         }
@@ -168,22 +168,22 @@ public class Alerts {
                 alert.showAndWait();
                 break;
             case 4:
-                alert.setTitle("Table Error");
-                alert.setContentText("Could not update tables.");
+                alert.setTitle(lang.getString("tableError"));
+                alert.setContentText(lang.getString("tableErrorContext"));
                 alert.showAndWait();
                 break;
             case 5:
-                alert.setTitle("Adding Error");
+                alert.setTitle(lang.getString("addingError"));
                 alert.setContentText("An error occurred while adding data to table.");
                 alert.showAndWait();
                 break;
             case 6:
-                alert.setTitle("Updating Error");
+                alert.setTitle(lang.getString("updatingError"));
                 alert.setContentText("An error occurred while updating data in the table.");
                 alert.showAndWait();
                 break;
             case 7:
-                alert.setTitle("Deleting Error");
+                alert.setTitle(lang.getString("deletingError"));
                 alert.setContentText("An error occurred while deleting data in the table.");
                 alert.showAndWait();
                 break;
@@ -193,33 +193,33 @@ public class Alerts {
                 alert.showAndWait();
                 break;
             case 9:
-                alert.setTitle("Error Adding Appointment");
+                alert.setTitle(lang.getString("addingError"));
                 alert.setContentText("An error occurred while adding the appointment. \nSystem failed to add appointment.");
                 alert.showAndWait();
                 break;
             case 10:
-                alert.setTitle("Data Loading Error");
-                alert.setContentText("Failed to load appointment data.");
+                alert.setTitle(lang.getString("dataLoadingError"));
+                alert.setContentText(lang.getString("failedAppointmentLoading"));
                 alert.showAndWait();
                 break;
             case 11:
-                alert.setTitle("Data Loading Error");
-                alert.setContentText("Failed to load customer data.");
+                alert.setTitle(lang.getString("dataLoadingError"));
+                alert.setContentText(lang.getString("failedCustomerLoading"));
                 alert.showAndWait();
                 break;
             case 12:
-                alert.setTitle("Deletion Error");
-                alert.setContentText("Failed to delete record.");
+                alert.setTitle(lang.getString("deletingError"));
+                alert.setContentText(lang.getString("failedDeletion"));
                 alert.showAndWait();
                 break;
             case 13:
-                alert.setTitle("Deletion Error");
-                alert.setContentText("Cannot delete customers with existing appointments.");
+                alert.setTitle(lang.getString("deletingError"));
+                alert.setContentText(lang.getString("failedExistingAppointments"));
                 alert.showAndWait();
                 break;
             case 14:
-                alert.setTitle("Error Adding Customer");
-                alert.setContentText("An error occurred while adding the customer. \nSystem failed to add customer.");
+                alert.setTitle(lang.getString("addingError"));
+                alert.setContentText(lang.getString("failedAddingCustomer"));
                 alert.showAndWait();
                 break;
         }
@@ -232,8 +232,8 @@ public class Alerts {
      */
     public static void alertErrorInputs(String additionalMessage){
         Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Input Error");
-        alert.setContentText("An error occurred as you are missing required fields.\n"+additionalMessage);
+        alert.setTitle(lang.getString("inputError"));
+        alert.setContentText(lang.getString("inputErrorContext")+"\n"+additionalMessage);
         alert.showAndWait();
     }
 
@@ -270,8 +270,8 @@ public class Alerts {
      */
     public static void alertLogout(Stage stage) throws SQLException, IOException {
         Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle("Logout Confirmation");
-        alert.setContentText("Are you sure you want to logout?");
+        alert.setTitle(lang.getString("logoutConfirmation"));
+        alert.setContentText(lang.getString("logoutConfirmationContext"));
         alert.getButtonTypes().clear();
         alert.getButtonTypes().addAll(ButtonType.CANCEL, ButtonType.OK);
         alert.showAndWait();
@@ -296,7 +296,7 @@ public class Alerts {
             LocalDateTime soon = now.plusMinutes(15);
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Upcoming Appointments");
+            alert.setTitle(lang.getString("upcomingAppointment"));
             boolean found = false;
             for (Appointment app : AppointmentDAO.getAllAppointments()) {
                 LocalDateTime start = app.getStart();
