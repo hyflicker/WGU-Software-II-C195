@@ -40,7 +40,7 @@ public class Validation {
     public static boolean validateAppointmentInputes(TextField title, TextField description, TextField location, ComboBox<String> contact, TextField type, DatePicker startDate, ComboBox<LocalTime> startTime, DatePicker endDate, ComboBox<LocalTime> endTime, ComboBox<String> customer, ComboBox<String> user){
         StringBuilder errorMessage = new StringBuilder();
         if (title.getText().isEmpty()) {
-            errorMessage.append("inputError7").append("\n");
+            errorMessage.append(lang.getString("inputError7")).append("\n");
         }
         if (description.getText().isEmpty()) {
             errorMessage.append(lang.getString("inputError8")).append("\n");
