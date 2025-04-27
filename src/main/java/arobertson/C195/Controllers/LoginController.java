@@ -1,6 +1,6 @@
 package arobertson.C195.Controllers;
 
-import Utilities.Alerts;
+import arobertson.C195.Utilities.Alerts;
 import arobertson.C195.DAO.UserDAO;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -113,10 +113,13 @@ public class LoginController implements Initializable {
      */
     private void loginAttemptLog(String username,boolean success) throws IOException {
         LocalDateTime timestamp = LocalDateTime.now();
-        String status = success ? "SUCCESS" : "FAILURE";
-        String logEntry = String.format("%s | %s | User: %s | Zone: %s%n", timestamp.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME), status, username, zoneId);
+        String status = "Failure";
+        if(success){
+            status = "Successful";
+        }
+        String activityLogEntry = "User: "+ username + " | Login Status: " + status + " | Zone: " + zoneId + " | " + timestamp.format(DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm"));
         try (FileWriter fw = new FileWriter("login_activity.txt", true)) {
-            fw.write(logEntry);
+            fw.write(activityLogEntry);
         }
     }
  }
