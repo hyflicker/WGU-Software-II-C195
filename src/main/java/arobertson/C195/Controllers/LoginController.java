@@ -2,7 +2,6 @@ package arobertson.C195.Controllers;
 
 import Utilities.Alerts;
 import arobertson.C195.DAO.UserDAO;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
