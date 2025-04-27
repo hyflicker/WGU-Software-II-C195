@@ -1,7 +1,7 @@
 package arobertson.C195.Controllers;
-import Utilities.Alerts;
-import Utilities.InputLoader;
-import Utilities.Validation;
+import arobertson.C195.Utilities.Alerts;
+import arobertson.C195.Utilities.InputLoader;
+import arobertson.C195.Utilities.Validation;
 import arobertson.C195.DAO.AppointmentDAO;
 import arobertson.C195.Models.Appointment;
 import javafx.fxml.FXML;

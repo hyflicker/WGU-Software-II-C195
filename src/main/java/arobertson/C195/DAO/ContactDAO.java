@@ -1,6 +1,6 @@
 package arobertson.C195.DAO;
 
-import Utilities.Database;
+import arobertson.C195.Utilities.Database;
 import arobertson.C195.Models.Contact;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

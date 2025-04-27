@@ -1,6 +1,6 @@
 package arobertson.C195.Controllers;
 
-import Utilities.Alerts;
+import arobertson.C195.Utilities.Alerts;
 import arobertson.C195.DAO.AppointmentDAO;
 import arobertson.C195.DAO.ContactDAO;
 import arobertson.C195.DAO.CustomerDAO;

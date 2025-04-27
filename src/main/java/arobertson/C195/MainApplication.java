@@ -1,7 +1,7 @@
 package arobertson.C195;
 
-import Utilities.Alerts;
-import Utilities.Database;
+import arobertson.C195.Utilities.Alerts;
+import arobertson.C195.Utilities.Database;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

@@ -1,6 +1,6 @@
 package arobertson.C195.DAO;
 
-import Utilities.Database;
+import arobertson.C195.Utilities.Database;
 import arobertson.C195.Models.Country;
 import arobertson.C195.Models.FirstLevelDivision;
 import javafx.collections.FXCollections;

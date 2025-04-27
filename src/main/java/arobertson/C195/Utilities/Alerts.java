@@ -1,4 +1,4 @@
-package Utilities;
+package arobertson.C195.Utilities;
 
 import arobertson.C195.DAO.AppointmentDAO;
 import arobertson.C195.MainApplication;

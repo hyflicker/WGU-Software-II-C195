@@ -10,15 +10,15 @@ The Appointment Scheduling Application is to help multiple business locations to
 - Scheduling appointments with customers
 - View, Add, Update, Delete appointments.
 - View, Add, Update, Delete customers.
-- When adding appointments, times avaialbe will be for local times during EST business hours.
-- Automatically adjusts visual times for current timezone.
+- When adding appointments, times available will be for local times during EST business hours.
+- Automatically adjusts visual times for current time zone.
 - Run reports
 ---
 
 ## 👤 Author Info
 
 - **Name:** Alex Robertson  
-- **Email:** XXXXX@XXXX.XXX
+- **Email:** arob611@wgu.edu
 
 ---
 

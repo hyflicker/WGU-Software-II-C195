@@ -1,6 +1,6 @@
 package arobertson.C195.Controllers;
 
-import Utilities.InputLoader;
+import arobertson.C195.Utilities.InputLoader;
 import arobertson.C195.DAO.AppointmentDAO;
 import arobertson.C195.Models.Appointment;
 import arobertson.C195.Models.Customer;

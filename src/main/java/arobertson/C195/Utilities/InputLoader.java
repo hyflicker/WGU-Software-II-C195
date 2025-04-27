@@ -1,4 +1,4 @@
-package Utilities;
+package arobertson.C195.Utilities;
 import arobertson.C195.DAO.ContactDAO;
 import arobertson.C195.DAO.LocationDAO;
 import arobertson.C195.DAO.UserDAO;
