@@ -18,7 +18,7 @@ The Appointment Scheduling Application is to help multiple business locations to
 ## 👤 Author Info
 
 - **Name:** Alex Robertson  
-- **Email:** arob611@wgu.edu
+- **Email:** XXXX@XXXX.XXX
 
 ---
 
