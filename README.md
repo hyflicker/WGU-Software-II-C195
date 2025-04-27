@@ -1,6 +1,6 @@
 # Appointments Scheduling Application – WGU C195
 
-**Performance Assessment for Software II – Advanced Java Concepts (C195)**
+**Performance Assessment for Software II – Advanced Java Concepts (C195)**  
 
 ---
 
@@ -17,20 +17,20 @@ The Appointment Scheduling Application is to help multiple business locations to
 
 ## 👤 Author Info
 
-- **Name:** Alex Robertson
+- **Name:** Alex Robertson  
 - **Email:** XXXXX@XXXX.XXX
 
 ---
 
 ## 🛠️ Development Tools & Resources
 
-- **IDE:** IntelliJ IDEA 2025.1 (Community Edition)
+- **IDE:** IntelliJ IDEA 2025.1 (Community Edition)  
 - **Java SDK:** Microsoft OpenJDK 17.0.15
 - **LTS:** 17
-- **Database:** MySQL Server 8.0.25
-- **JDBC Driver:** mysql-connector-j-8.0.33.jar
+- **Database:** MySQL Server 8.0.25  
+- **JDBC Driver:** mysql-connector-j-8.0.33.jar  
 - **JavaFX Version:** org.openjfx:javafx-base:17.0.16 (via Maven)
-- **Version:** 1.0
+- **Version:** 1.0  
 - **Date:** 4/26/2025
 
 ---
