@@ -10,6 +10,8 @@ module com.arobertson.software_ii__c195 {
     exports arobertson.C195.Models;
     opens arobertson.C195.Controllers to javafx.fxml;
     exports arobertson.C195.DAO;
+    exports arobertson.C195.Utilities;
+    opens arobertson.C195.Utilities to javafx.fxml;
     opens arobertson.C195.DAO to javafx.fxml;
     opens arobertson.C195.Models to javafx.fxml;
 }
