@@ -449,17 +449,26 @@ public class MainController implements Initializable {
     /**
      * Loads and/or refreshes the data into the appointment table.
      */
-    private void refreshAppointmentTable() throws SQLException{
-        ObservableList<Appointment> appointments = AppointmentDAO.getAllAppointments();
-        appointmentTable.setItems(appointments);
-        System.out.print("App Table Refresh");
+    private void refreshAppointmentTable() {
+        try {
+            ObservableList<Appointment> appointments = AppointmentDAO.getAllAppointments();
+            appointmentTable.setItems(appointments);
+            System.out.print("App Table Refresh");
+        } catch (SQLException e) {
+            System.out.print(e);
+        }
     }
 
     /**
      * Loads and/or refreshes the data into the customer table.
      */
-    private void refreshCustomerTable() throws SQLException {
-        ObservableList<Customer> customers = CustomerDAO.getCustomerList();
-        customerTable.setItems(customers);
+    private void refreshCustomerTable() {
+        try {
+            ObservableList<Customer> customers = CustomerDAO.getCustomerList();
+            customerTable.setItems(customers);
+        } catch (SQLException e) {
+            System.out.print(e);
+//            showAlert("Error", "Could not refresh customer data", Alert.AlertType.ERROR);
+        }
     }
 }
