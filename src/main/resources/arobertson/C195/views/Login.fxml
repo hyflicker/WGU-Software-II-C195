@@ -4,7 +4,7 @@
 <?import javafx.scene.text.*?>
 <VBox xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17"
       fx:controller="arobertson.C195.Controllers.LoginController">
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="402.0" prefWidth="644.0" VBox.vgrow="ALWAYS">
+    <AnchorPane prefHeight="402.0" prefWidth="644.0" VBox.vgrow="ALWAYS">
         <Label fx:id="title" layoutX="298.0" layoutY="59.0" text="Login">
             <font>
                 <Font name="System Bold" size="34.0"/>
