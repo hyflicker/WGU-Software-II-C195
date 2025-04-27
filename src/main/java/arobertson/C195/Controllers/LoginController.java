@@ -20,6 +20,7 @@ import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 /**
@@ -48,14 +49,17 @@ public class LoginController implements Initializable {
     private static final ZoneId zoneId = ZoneId.systemDefault();
     private static final String location = zoneId.toString();
 
+
+    ResourceBundle lang = ResourceBundle.getBundle("language", Locale.getDefault());
+
     /**
      * Sets the values of the labels and text on the login form to be in English or French based on the OS Default Language.
      *LAMBDA #2 - The inline lambda expression is more concise and more compact than a separate @FMXL function.
      * @param url Not Used
-     * @param lang Not Used
+     * @param resourceBundle Not Used
      */
     @Override
-    public void initialize(URL url, ResourceBundle lang) {
+    public void initialize(URL url, ResourceBundle resourceBundle) {
         username_label.setText(lang.getString("Username"));
         password_label.setText(lang.getString("Password"));
         timezone_label.setText(lang.getString("Location"));
