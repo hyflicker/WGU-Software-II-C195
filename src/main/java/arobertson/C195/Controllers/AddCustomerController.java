@@ -89,7 +89,7 @@ public class AddCustomerController implements Initializable {
             Customer newCustomer = new Customer(0, nameInput.getText(), addressInput.getText(), postalCodeInput.getText(), phoneNumberInput.getText(), divisionId);
             CustomerDAO.insertCustomer(newCustomer);
 
-            Alerts.alertInfo(4);
+            Alerts.alertInfo(4,"");
             Stage stage = (Stage) saveBtn.getScene().getWindow();
             stage.close();
         } catch (SQLException e) {

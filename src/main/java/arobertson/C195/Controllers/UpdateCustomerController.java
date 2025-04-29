@@ -140,7 +140,7 @@ public class UpdateCustomerController implements Initializable {
 
            CustomerDAO.updateCustomer(selectedCustomer);
 
-           Alerts.alertInfo(5);
+           Alerts.alertInfo(5,"");
            Stage stage = (Stage) saveBtn.getScene().getWindow();
            stage.close();
        }catch (SQLException e){

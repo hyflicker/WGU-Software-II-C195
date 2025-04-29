@@ -92,7 +92,7 @@ public class Alerts {
      * 5: Success message for updating a customer.
      * 6: Success message for deleting a customer.
      */
-    public static void alertInfo(int infoId){
+    public static void alertInfo(int infoId, String additionalMessage){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
 
         switch (infoId){
@@ -108,7 +108,7 @@ public class Alerts {
                 break;
             case 3:
                 alert.setTitle(lang.getString("success"));
-                alert.setContentText(lang.getString("appointmentDeleteSuccess"));
+                alert.setContentText(lang.getString("appointmentDeleteSuccess") + "\n" + additionalMessage);
                 alert.showAndWait();
                 break;
             case 4:

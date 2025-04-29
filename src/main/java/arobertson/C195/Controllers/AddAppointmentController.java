@@ -134,7 +134,7 @@ public class AddAppointmentController implements Initializable {
             );
 
             AppointmentDAO.insert(newAppointment);
-            Alerts.alertInfo(1);
+            Alerts.alertInfo(1,"");
             Stage stage = (Stage) saveBtn.getScene().getWindow();
             stage.close();
         } catch (SQLException e) {
