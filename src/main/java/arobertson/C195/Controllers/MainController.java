@@ -170,9 +170,11 @@ public class MainController implements Initializable {
         }
 
         try {
-            AppointmentDAO.delete(selected.getAppointmentId());
+            int appId = selected.getAppointmentId();
+            AppointmentDAO.delete(appId);
             refreshAppointmentTable();
-            Alerts.alertInfo(3);
+            String appInfo = "Appointment Id: " + appId + "\nAppointment Type: " + selected.getType();
+            Alerts.alertInfo(3,appInfo);
         } catch (SQLException e) {
             Alerts.alertError(12);
         }
@@ -201,7 +203,7 @@ public class MainController implements Initializable {
 
             CustomerDAO.deleteCustomer(selected.getCustomerId());
             refreshCustomerTable();
-            Alerts.alertInfo(6);
+            Alerts.alertInfo(6,"");
         } catch (SQLException e) {
             Alerts.alertError(12);
         }
